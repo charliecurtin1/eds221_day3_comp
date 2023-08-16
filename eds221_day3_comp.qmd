@@ -49,3 +49,32 @@ if (housing_type == "single") {
   print(1100)
 }
 ```
+
+## for loops
+
+```{r}
+height <- c(58, 61, 65, 72, 89, 94)
+
+for (i in seq_along(height)) {
+  half_height = height[i] / 2
+  print(half_height)
+}
+
+## for each value in height vector, return sum of value + the one right after it
+
+heighta <- c(3, 5, 8, 72, 89, 94)
+
+for (i in seq_along(heighta)) {
+  height2 = heighta[i] + heighta[i + 1]
+  print(height2)
+}
+```
+
+```{r}
+## write a for loop that calculates value of height for each element divided by the mean of the entire height vector
+
+for (i in seq_along(height)) {
+  height_st = height[i] / mean(height)
+  print(height_st)
+}
+```
