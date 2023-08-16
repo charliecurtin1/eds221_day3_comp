@@ -17,16 +17,35 @@ if (temp > 97) {
   print("no warning")
 ```
 
-create an if else statement for blue whale lengths. Create a variable blue whale with a value of 40. add an if else statement that returns "giant" if the length exceeds 35, medium if the length is between 20 and 35, small if the length is less than \<= 20
+create an if else statement for blue whale lengths. Create a variable blue whale with a value of 40. add an if else statement that returns "giant" if the length exceeds 35, medium if the length is between 20 and 35, small if the length is less than 20
 
 ```{r}
-blue_whale <- 40
+blue_whale <- 30
 
 if (blue_whale > 35) {
   print("GIANT")
 } else if (blue_whale >= 20 & blue_whale <= 35) {
   print("MEDIUM")
-} else (blue_whale < 20) {
+} else if (blue_whale < 20) {
   print("SMALL")
+}
+```
+
+### Switch statement
+
+```{r}
+housing_type <- "whole"
+
+switch(housing_type,
+       "single" = print(400),
+       "double" = print(750),
+       "whole" = print(1100))
+
+if (housing_type == "single") {
+  print(400)
+} else if (housing_type == "double") {
+  print(750)
+} else if (housing_type == "whole") {
+  print(1100)
 }
 ```
