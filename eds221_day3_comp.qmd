@@ -6,6 +6,11 @@ execute:
   warning: FALSE
 ---
 
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
 ### Conditional statements
 
 ```{r}
@@ -76,5 +81,73 @@ for (i in seq_along(heighta)) {
 for (i in seq_along(height)) {
   height_st = height[i] / mean(height)
   print(height_st)
+}
+```
+
+### for loops with conditional statements
+
+```{r}
+## write a for loop with a conditional if statement that returns the means of all numeric variables in the penguins dataset
+
+peng_mean <- vecotr(mode = "numeric")
+for (i in seq_along(penguins)) {
+  if (is.numeric(penguins[[i]])) {
+    mean_peng <- mean(penguins[[i]], na.rm = TRUE)
+    print(mean_peng)
+  }
+  else {
+    print("HAH!")
+  }
+}
+```
+
+### Functional programming for easier iteration
+
+```{r}
+## apply() applies a function over a matrix/array. apply(data, [1 - apply over rows, 2- apply over columns], function)
+apply(mtcars, 2, mean)
+```
+
+```{r}
+## apply
+apply(mtcars, 2, median)
+apply(X = mtcars, MARGIN = 2, FUN = median) # redundant since the arguments are in the right order in the above line
+```
+
+```{r}
+## tapply applies a function over a group (factor level)
+## tapply(data$column, data$group to apply over, function)
+tapply(penguins$flipper_length_mm, penguins$species, mean, na.rm = TRUE)
+```
+
+```{r}
+## summarize()
+## calculate mean flipper length of penguins by species
+penguins %>% 
+  group_by(species, sex) %>% ## group_by(variable, variable) [as many as you want]
+  # argument is group you want to do the following operation for (operation over each group)
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE),
+            sd_flipper_length = sd(flipper_length_mm, na.rm = TRUE),
+            max_body_mass = max(body_mass_g, na.rm = TRUE))
+```
+
+```{r}
+## dplyr::across()
+penguins %>% 
+  group_by(species, island) %>% 
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+```
+
+## detecting a string pattern
+
+```{r}
+food <- "I love burritos"
+
+str_detect(food, "burritos") # asks if the string shows up in that stored value
+
+if (str_detect(food, "burritos")) {
+  print("yay burritos")
+} else {
+  print("what about burritos")
 }
 ```
